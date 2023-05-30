@@ -6,11 +6,13 @@
 /*   By: shisaeki <shisaeki@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/28 11:35:44 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:31:30 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdarg.h>
+#include <limits.h>
 
 int	ft_putchar(char c)
 {
@@ -19,44 +21,106 @@ int	ft_putchar(char c)
 
 int	ft_putstr(char *str)
 {
-	size_t res;
+	int count;
 
-	res = 0;
+	count = 0;
 	if(!str)
-		return (res);
+		return (count);
 	while(*str)
 	{
-		res += ft_putchar(*str);
+		count += ft_putchar(*str);
 		str++;
 	}
-	return (res);
+	return (count);
+}
+
+int	count_digits(int n)
+{
+	int count;
+
+	count = 0;
+	if (n <= 0)
+		count++;
+	while (n)
+	{
+		count++;
+		n /= 10;
+	}
+	return (count);
+}
+
+void	ft_putnbr(int n)
+{
+	if (0 <= n && n < 10)
+		ft_putchar(n + '0');
+	else if (10 <= n)
+	{
+		ft_putnbr(n / 10);
+		ft_putchar(n % 10 + '0');
+	}
+	else
+	{
+		if (n == INT_MIN)
+			ft_putstr("-2147483648");
+		else
+		{
+			ft_putchar('-');
+			ft_putnbr(-1 * n);
+		}
+	}
 }
 
 int	ft_printf(char *format, ...)
 {
-	int res;
-	char *itr;
+	int		count;
+	char	*itr;
+	int		nbr;
+	va_list	ap;
 
+	va_start(ap, format);
 	itr = format;
-	res = 0;
+	count = 0;
 	while (*itr)
 	{
 		if (*itr == '%')
 		{
-			continue;
+			itr++;
+			if (*itr == 'c')
+			{
+				count += ft_putchar(va_arg(ap, int));
+				itr++;
+			}
+			else if (*itr == 's')
+			{
+				count += ft_putstr(va_arg(ap, char *));
+				itr++;
+			}
+			else if (*itr == 'd')
+			{
+				nbr = va_arg(ap, int);
+				ft_putnbr(nbr);
+				count += count_digits(nbr);
+				itr++;
+			}
 		}
-		ft_putchar(*itr);
-		itr++;
+		if (*itr != '\0')
+		{
+			ft_putchar(*itr);
+			itr++;
+			count++;
+		}
 	}
-	return (res);
+	return (count);
 }
 
 #include <stdio.h>
 
 int main()
 {
-	printf("Hello");
+	int ex = printf("%d:%s:%c", -12, "Hello", 'c');
 	printf("\n");
-	ft_printf("Hello");
+	int ac = ft_printf("%d:%s:%c", -12, "Hello", 'c');
+	printf("\n");
+	printf("ex: %d\nac: %d", ex, ac);
 	return (0);
 }
