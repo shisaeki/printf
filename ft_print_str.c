@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 14:04:02 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 13:39:49 by shisaeki         ###   ########.fr       */
+/*   Created: 2023/05/30 14:11:09 by shisaeki          #+#    #+#             */
+/*   Updated: 2023/06/03 13:01:32 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int main()
+int	ft_print_str(char *str)
 {
-	char ptr[10] = "ft_printf";
+	int count;
 
-	int ex = printf("%x:%d:%u:%s:%p:%c:%%", 15, -12, 231,"Hello",ptr, 'c');
-	printf("\n");
-	int ac = ft_printf("%x:%d:%u:%s:%p:%c:%%", 15, -12, 231, "Hello",ptr, 'c');
-	printf("\n");
-	printf("ex: %d\nac: %d", ex, ac);
-	return (0);
+	count = 0;
+	if(!str)
+		return (count);
+	while(*str)
+	{
+		count += ft_print_char(*str);
+		str++;
+	}
+	return (count);
 }

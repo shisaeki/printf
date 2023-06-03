@@ -6,7 +6,7 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/31 17:07:05 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 13:36:40 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,35 +29,46 @@ int	ft_printf(char *format, ...)
 			itr++;
 			if (*itr == 'c')
 			{
-				count += ft_putchar(va_arg(ap, int));
+				count += ft_print_char(va_arg(ap, int));
 				itr++;
 			}
 			else if (*itr == 's')
 			{
-				count += ft_putstr(va_arg(ap, char *));
+				count += ft_print_str(va_arg(ap, char *));
 				itr++;
 			}
 			else if (*itr == 'd')
 			{
-				nbr = va_arg(ap, int);
-				ft_putnbr(nbr);
-				count += count_digits(nbr);
+				count += ft_print_nbr(va_arg(ap, int));
+				itr++;
+			}
+			else if (*itr == 'u')
+			{
+				count += ft_print_unbr(va_arg(ap, unsigned int));
+				itr++;
+			}
+			else if (*itr == 'p')
+			{
+				count += ft_print_ptr(va_arg(ap, unsigned long long));
+				itr++;
+			}
+			else if (*itr == 'x' || *itr == 'X')
+			{
+				count += ft_print_hex(va_arg(ap, int), *itr);
 				itr++;
 			}
 			else if (*itr == '%')
 			{
-				ft_putchar('%');
-				count++;
+				count += ft_print_char('%');
 				itr++;
 			}
 		}
 		if (*itr != '\0')
 		{
-			ft_putchar(*itr);
+			count += ft_print_char(*itr);
 			itr++;
-			count++;
 		}
 	}
-	va_close(ap);
+	va_end(ap);
 	return (count);
 }

@@ -1,49 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 14:29:07 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/30 14:40:10 by shisaeki         ###   ########.fr       */
+/*   Created: 2023/06/03 11:34:46 by shisaeki          #+#    #+#             */
+/*   Updated: 2023/06/03 13:14:57 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	count_digits(int n)
+int	count_ptr(uintptr_t n)
 {
-	int count;
+	int len;
 
-	count = 0;
-	if (n <= 0)
-		count++;
+	len = 0;
 	while (n)
 	{
-		count++;
-		n /= 10;
+		len++;
+		n /= 16;
 	}
-	return (count);
+	return (len);
 }
 
-void	ft_putnbr(int n)
+void	ft_putptr(uintptr_t n)
 {
-	if (0 <= n && n < 10)
-		ft_putchar(n + '0');
-	else if (10 <= n)
+	if (n < 16)
 	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
+		if (n <= 9)
+			ft_print_char(n + '0');
+		else
+			ft_print_char(n - 10 + 'a');
 	}
 	else
 	{
-		if (n == INT_MIN)
-			ft_putstr("-2147483648");
-		else
-		{
-			ft_putchar('-');
-			ft_putnbr(-1 * n);
-		}
+		ft_putptr(n / 16);
+		ft_putptr(n % 16);
 	}
+}
+
+int	ft_print_ptr(unsigned long long ptr)
+{
+	int	count;
+
+	count = 0;
+	count += ft_print_str("0x");
+	if (ptr == 0)
+		count += ft_print_char('0');
+	else
+	{
+		ft_putptr(ptr);
+		count += count_ptr(ptr);
+	}
+	return (count);
 }
