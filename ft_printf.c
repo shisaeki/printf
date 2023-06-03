@@ -6,17 +6,38 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 13:36:40 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:12:45 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int	parse_format(va_list ap, char *itr)
+{
+	int count;
+
+	count = 0;
+	if (*itr == 'c')
+		count += ft_print_char(va_arg(ap, int));
+	else if (*itr == 's')
+		count += ft_print_str(va_arg(ap, char *));
+	else if (*itr == 'd')
+		count += ft_print_nbr(va_arg(ap, int));
+	else if (*itr == 'u')
+		count += ft_print_unbr(va_arg(ap, unsigned int));
+	else if (*itr == 'p')
+		count += ft_print_ptr(va_arg(ap, unsigned long long));
+	else if (*itr == 'x' || *itr == 'X')
+		count += ft_print_hex(va_arg(ap, int), *itr);
+	else if (*itr == '%')
+		count += ft_print_char('%');
+	return (count);
+}
+
 int	ft_printf(char *format, ...)
 {
 	int		count;
 	char	*itr;
-	int		nbr;
 	va_list	ap;
 
 	va_start(ap, format);
@@ -27,41 +48,8 @@ int	ft_printf(char *format, ...)
 		if (*itr == '%')
 		{
 			itr++;
-			if (*itr == 'c')
-			{
-				count += ft_print_char(va_arg(ap, int));
-				itr++;
-			}
-			else if (*itr == 's')
-			{
-				count += ft_print_str(va_arg(ap, char *));
-				itr++;
-			}
-			else if (*itr == 'd')
-			{
-				count += ft_print_nbr(va_arg(ap, int));
-				itr++;
-			}
-			else if (*itr == 'u')
-			{
-				count += ft_print_unbr(va_arg(ap, unsigned int));
-				itr++;
-			}
-			else if (*itr == 'p')
-			{
-				count += ft_print_ptr(va_arg(ap, unsigned long long));
-				itr++;
-			}
-			else if (*itr == 'x' || *itr == 'X')
-			{
-				count += ft_print_hex(va_arg(ap, int), *itr);
-				itr++;
-			}
-			else if (*itr == '%')
-			{
-				count += ft_print_char('%');
-				itr++;
-			}
+			count += parse_format(ap, itr);
+			itr++;
 		}
 		if (*itr != '\0')
 		{
