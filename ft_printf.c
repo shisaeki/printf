@@ -6,7 +6,7 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 17:15:22 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 22:26:55 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,10 @@ int	ft_printf(const char *format, ...)
 		{
 			itr++;
 			count += parse_format(&ap, itr);
-			itr++;
 		}
-		if (*itr != '\0')
-		{
+		else if (*itr != '\0')
 			count += ft_print_char(*itr);
-			itr++;
-		}
+		itr++;
 	}
 	va_end(ap);
 	return (count);
