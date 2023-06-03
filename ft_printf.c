@@ -6,7 +6,7 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 17:04:55 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:14:42 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parse_format(va_list *ap, char *itr)
 		count += ft_print_char(va_arg(*ap, int));
 	else if (*itr == 's')
 		count += ft_print_str(va_arg(*ap, char *));
-	else if (*itr == 'd')
+	else if (*itr == 'd' || *itr == 'i')
 		count += ft_print_nbr(va_arg(*ap, int));
 	else if (*itr == 'u')
 		count += ft_print_unbr(va_arg(*ap, unsigned int));

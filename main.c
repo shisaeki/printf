@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:04:02 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 16:59:15 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:12:57 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	main()
 {
-	char	ptr[10];
 	int		ex;
 	int		ac;
 
-	ptr = "ft_printf";
-	ex = printf("%x:%d:%u:%s:%p:%c:%%", 15, -12, 231, "Hello", ptr, 'c');
+	ex = printf("%%%%");
 	printf("\n");
-	ac = ft_printf("%x:%d:%u:%s:%p:%c:%%", 15, -12, 231, "Hello", ptr, 'c');
+	ac = ft_printf("%%%%");
 	printf("\n");
 	printf("ex: %d\nac: %d", ex, ac);
 	return (0);
