@@ -6,7 +6,7 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 14:12:45 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:16:41 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	parse_format(va_list ap, char *itr)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (*itr == 'c')

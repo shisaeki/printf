@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:29:07 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 13:23:45 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:15:04 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	count_digits(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n <= 0)
@@ -48,9 +48,9 @@ void	ft_putnbr(int n)
 	}
 }
 
-int ft_print_nbr(int n)
+int	ft_print_nbr(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n == 0)

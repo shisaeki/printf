@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 13:30:15 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 13:39:00 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:16:17 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	count_udigits(unsigned int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (n)
@@ -25,7 +25,7 @@ int	count_udigits(unsigned int n)
 	return (count);
 }
 
-void ft_putunbr(unsigned int n)
+void	ft_putunbr(unsigned int n)
 {
 	if (0 <= n && n < 10)
 		ft_print_char(n + '0');
@@ -36,9 +36,9 @@ void ft_putunbr(unsigned int n)
 	}
 }
 
-int ft_print_unbr(unsigned int n)
+int	ft_print_unbr(unsigned int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n == 0)

@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 11:34:46 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 13:14:57 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:15:49 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	count_ptr(uintptr_t n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (n)

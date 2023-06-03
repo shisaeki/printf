@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:11:09 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 13:01:32 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:15:21 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_print_str(char *str)
 {
-	int count;
+	int	count;
 
 	count = 0;
-	if(!str)
+	if (!str)
 		return (count);
-	while(*str)
+	while (*str)
 	{
 		count += ft_print_char(*str);
 		str++;

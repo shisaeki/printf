@@ -6,7 +6,7 @@
 /*   By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 13:47:34 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 13:37:50 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:17:47 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <limits.h>
 # include <stdio.h>
 
-int		ft_print_char(char c);
-int		ft_print_str(char *str);
+int	ft_print_char(char c);
+int	ft_print_str(char *str);
 int	ft_print_nbr(int n);
-int ft_print_unbr(unsigned int n);
+int	ft_print_unbr(unsigned int n);
 int	ft_print_hex(unsigned int n, const char format);
-int		ft_print_ptr(unsigned long long ptr);
+int	ft_print_ptr(unsigned long long ptr);
 
-int		ft_printf(char *format, ...);
+int	ft_printf(char *format, ...);
 
 #endif
