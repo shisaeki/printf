@@ -6,13 +6,13 @@
 /*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/06/03 17:14:42 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:15:22 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	parse_format(va_list *ap, char *itr)
+int	parse_format(va_list *ap, const char *itr)
 {
 	int	count;
 
