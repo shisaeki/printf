@@ -3,72 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shisaeki <shisaeki@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shisaeki <shisaeki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:06:37 by shisaeki          #+#    #+#             */
-/*   Updated: 2023/05/30 11:31:30 by shisaeki         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:07:05 by shisaeki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <limits.h>
-
-int	ft_putchar(char c)
-{
-	return (write(STDOUT_FILENO, &c, 1));
-}
-
-int	ft_putstr(char *str)
-{
-	int count;
-
-	count = 0;
-	if(!str)
-		return (count);
-	while(*str)
-	{
-		count += ft_putchar(*str);
-		str++;
-	}
-	return (count);
-}
-
-int	count_digits(int n)
-{
-	int count;
-
-	count = 0;
-	if (n <= 0)
-		count++;
-	while (n)
-	{
-		count++;
-		n /= 10;
-	}
-	return (count);
-}
-
-void	ft_putnbr(int n)
-{
-	if (0 <= n && n < 10)
-		ft_putchar(n + '0');
-	else if (10 <= n)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + '0');
-	}
-	else
-	{
-		if (n == INT_MIN)
-			ft_putstr("-2147483648");
-		else
-		{
-			ft_putchar('-');
-			ft_putnbr(-1 * n);
-		}
-	}
-}
+#include "ft_printf.h"
 
 int	ft_printf(char *format, ...)
 {
@@ -102,6 +44,12 @@ int	ft_printf(char *format, ...)
 				count += count_digits(nbr);
 				itr++;
 			}
+			else if (*itr == '%')
+			{
+				ft_putchar('%');
+				count++;
+				itr++;
+			}
 		}
 		if (*itr != '\0')
 		{
@@ -110,17 +58,6 @@ int	ft_printf(char *format, ...)
 			count++;
 		}
 	}
+	va_close(ap);
 	return (count);
-}
-
-#include <stdio.h>
-
-int main()
-{
-	int ex = printf("%d:%s:%c", -12, "Hello", 'c');
-	printf("\n");
-	int ac = ft_printf("%d:%s:%c", -12, "Hello", 'c');
-	printf("\n");
-	printf("ex: %d\nac: %d", ex, ac);
-	return (0);
 }
