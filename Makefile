@@ -6,14 +6,13 @@
 #    By: shisaeki <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/30 14:32:43 by shisaeki          #+#    #+#              #
-#    Updated: 2023/06/03 13:37:20 by shisaeki         ###   ########.fr        #
+#    Updated: 2023/06/03 16:59:47 by shisaeki         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=libftprintf
+NAME=libftprintf.a
 
-SRCS = main.c \
-		ft_printf.c \
+SRCS = ft_printf.c \
 		ft_print_char.c \
 		ft_print_str.c \
 		ft_print_nbr.c \
@@ -21,12 +20,19 @@ SRCS = main.c \
 		ft_print_hex.c \
 		ft_print_ptr.c \
 
-INCLUDES=ft_printf.h \
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME):
-	cc -o $(NAME) -I $(INCLUDES) $(SRCS)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME) : $(OBJS)
+	ar rcs $(NAME) $(OBJS)
+
 clean:
-	rm -f libftprintf
-re: clean all
+	-rm -f $(OBJS)
+fclean: clean
+	-rm -f $(NAME)
+re: fclean all
+
